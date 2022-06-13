@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthOwnerController extends Controller
 {
+
+    public function ownerLogin(){
+        if (auth()->check()) {
+            return redirect('/dashboard');
+        }
+        return view('auth.owner');
+    }
+
     public function submitLogin(Request $request)
     {
         $request->validate([

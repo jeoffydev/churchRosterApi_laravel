@@ -14,12 +14,11 @@ use App\Http\Controllers\AuthOwnerController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-//Login Auth
-Route::get('/owner', function () {
-    return view('auth.owner');
-});
+
+Route::get('owner', [AuthOwnerController::class, 'ownerLogin'])->name('auth.owner'); 
 Route::post('submitlogin', [AuthOwnerController::class, 'submitLogin'])->name('login.submit'); 
