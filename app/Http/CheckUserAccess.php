@@ -21,4 +21,18 @@ class CheckUserAccess
         $userType = UserAccess::find($authUser->id)->userType;
         return $userType[0]->type_name == static::$_Admin ? true : false;
     }
+
+    public function isContractor(){
+        $authUser  = Auth::user(); 
+        // get the user access type name 
+        $userType = UserAccess::find($authUser->id)->userType;
+        return $userType[0]->type_name == static::$_Contractor ? true : false;
+    }
+
+    public function isMember(){
+        $authUser  = Auth::user(); 
+        // get the user access type name 
+        $userType = UserAccess::find($authUser->id)->userType;
+        return $userType[0]->type_name == static::$_Member ? true : false;
+    }
 }
