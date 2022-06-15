@@ -11,7 +11,6 @@ class AuthOwnerDashboardController extends Controller
  
  
     public function index(){
-      
         return view('auth.dashboard');
     }
 
