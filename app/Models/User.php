@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\UserAccess;
+use App\Models\UserOrganisation;
 
 class User extends Authenticatable
 {
@@ -42,5 +43,10 @@ class User extends Authenticatable
     public function userAccess()
     {
         return $this->hasMany(UserAccess::class);
+    }
+
+    public function userOrganisation()
+    {
+        return $this->hasMany(UserOrganisation::class);
     }
 }
