@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthOwnerController;
 use App\Http\Controllers\AuthOwnerDashboardController;
+use App\Http\Controllers\AuthOwnerOrganisationController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +29,7 @@ Route::post('owner', [AuthOwnerController::class, 'ownerLogin'])->name('login');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard', [AuthOwnerDashboardController::class, 'index'])->name('auth.dashboard'); 
+    Route::get('organisation', [AuthOwnerOrganisationController::class, 'index'])->name('auth.organisation'); 
+    Route::post('create', [AuthOwnerOrganisationController::class, 'doCreateOrg'])->name('create.org');
     Route::get('logout', [AuthOwnerDashboardController::class, 'logout'])->name('auth.owner');
 });

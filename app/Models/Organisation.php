@@ -10,7 +10,7 @@ class Organisation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'active', 'org_name', 'description', 'location'
+        'active', 'org_name'
     ];
 
 }

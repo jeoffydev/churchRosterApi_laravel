@@ -1,16 +1,11 @@
 @extends('layout.master')
+@extends('layout.navigation')
 
 @section('content')
     <div class="row">
-        <div class="col-md-12"> 
+        <div class="col-md-12 mt-3"> 
             DASHBOARD! 
 
-            @auth
-                {{auth()->user()->name}}
-                <div class="text-end">
-                    <a href="{{ url('/logout') }}" class="btn btn-success me-2">Logout</a>
-                </div>
-            @endauth
 
         </div>
     </div> 
