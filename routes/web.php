@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthOwnerController;
 use App\Http\Controllers\AuthOwnerDashboardController;
 use App\Http\Controllers\AuthOwnerOrganisationController;
+use App\Http\Controllers\AuthOwnerContractorController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,14 @@ Route::post('submitlogin', [AuthOwnerController::class, 'submitLogin'])->name('l
 Route::post('owner', [AuthOwnerController::class, 'ownerLogin'])->name('login');
 
 Route::group(['middleware' => ['auth']], function() {
+    //Dashboard
     Route::get('dashboard', [AuthOwnerDashboardController::class, 'index'])->name('auth.dashboard'); 
+    //Organisation
     Route::get('organisation', [AuthOwnerOrganisationController::class, 'index'])->name('auth.organisation'); 
     Route::post('create', [AuthOwnerOrganisationController::class, 'doCreateOrg'])->name('create.org');
+    Route::get('organisation/{id}', [AuthOwnerOrganisationController::class, 'edit'])->name('auth.organisation-edit'); 
+    //Contractors
+    Route::get('contractors', [AuthOwnerContractorController::class, 'index'])->name('auth.contractor'); 
+    //Logout
     Route::get('logout', [AuthOwnerDashboardController::class, 'logout'])->name('auth.owner');
 });

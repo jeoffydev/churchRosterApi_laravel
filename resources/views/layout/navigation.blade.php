@@ -16,12 +16,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/organisation') }}">{{ __('Organisation') }}</a>
                             </li>
-                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/contractors') }}">{{ __('Contractors') }}</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/logout') }}">{{ __('Logout') }}</a>
                             </li>
                         </ul>
-                       
                     </div>
                     <span class="navbar-text text-end">
                         @auth

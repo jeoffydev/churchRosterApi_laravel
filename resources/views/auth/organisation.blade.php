@@ -54,7 +54,36 @@
             </form>
         </div>
         <div class="col-md-9">
-            XXX
+            <div class="row">
+                <div class="col-md-12">
+                        @if(count($data['organisationsList']) > 0)
+                            
+                            <table class="table table-striped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">{{ __('Name') }}</th>
+                                            <th scope="col">{{ __('Active') }}</th>
+                                            <th scope="col">{{ __('Edit') }}</th>
+                                            <th scope="col">{{ __('Delete') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($data['organisationsList'] as $org)
+                                            <tr>
+                                                <td>{{ $org->org_name }}</td>
+                                                <td>@if( $org->active === 1) {{ __('Yes') }} @else {{ __('No') }} @endif </td>
+                                                <td><a class="btn btn-info" href="{{ URL::to('organisation/' . $org->id) }}">{{ __('Edit') }}</a> </td>
+                                                <td><a class="btn btn-danger" href="{{ URL::to('organisation/' . $org->id) }}">{{ __('Delete') }}</a> </td>
+                                            </tr>  
+                                        @endforeach
+                                    </tbody>
+                            </table>
+                               
+                        @else 
+                            <span class="alert alert-warning">{{ __('0 Organisation') }}</span> 
+                        @endif
+                </div>
+            </div>    
         </div>
     </div>
 @stop
