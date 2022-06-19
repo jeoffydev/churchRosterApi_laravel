@@ -63,6 +63,8 @@
                                         <tr>
                                             <th scope="col">{{ __('Name') }}</th>
                                             <th scope="col">{{ __('Active') }}</th>
+                                            <th scope="col">{{ __('Location') }}</th>
+                                            <th scope="col">{{ __('Description') }}</th>
                                             <th scope="col">{{ __('Edit') }}</th>
                                             <th scope="col">{{ __('Delete') }}</th>
                                         </tr>
@@ -71,9 +73,11 @@
                                         @foreach($data['organisationsList'] as $org)
                                             <tr>
                                                 <td>{{ $org->org_name }}</td>
+                                                <td>{{ $org->location }}</td>
+                                                <td>{{ $org->description }}</td>
                                                 <td>@if( $org->active === 1) {{ __('Yes') }} @else {{ __('No') }} @endif </td>
                                                 <td><a class="btn btn-info" href="{{ URL::to('organisation/' . $org->id) }}">{{ __('Edit') }}</a> </td>
-                                                <td><a class="btn btn-danger" href="{{ URL::to('organisation/' . $org->id) }}">{{ __('Delete') }}</a> </td>
+                                                <td><a class="btn btn-danger" href="{{ URL::to('organisation/delete/' . $org->id) }}" onclick="return confirm('Are you sure you want to delete this organisation?');">{{ __('Delete') }}</a> </td>
                                             </tr>  
                                         @endforeach
                                     </tbody>

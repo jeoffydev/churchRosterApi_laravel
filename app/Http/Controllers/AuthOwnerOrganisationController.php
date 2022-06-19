@@ -41,6 +41,7 @@ class AuthOwnerOrganisationController extends Controller
             $organisation = Organisation::where('id', $id)->exists();
             if($organisation){
                 $organisation = Organisation::find($id);
+                $organisation = Organisation::find($id);
                 $data = [
                     'organisation'=>$organisation
                 ];
@@ -51,4 +52,42 @@ class AuthOwnerOrganisationController extends Controller
        return Redirect::to('/organisation');
         
     }
+
+    public function doUpdateOrg(Request $request){
+
+       
+        // Form validation
+        $this->validate($request, [
+            'id'=> 'required',
+            'org_name' => 'required',
+            'active' => 'required',
+        ]); 
+
+        $org = Organisation::find($request->get('id'));
+        // Getting values from the blade template form
+        $org->org_name =  $request->get('org_name');
+        $org->active = $request->get('active');
+        $org->location = $request->get('location');
+        $org->description = $request->get('description');
+        $org->save();
+        return back()->with('success', 'Organisation has been updated.');
+    
+    }
+
+    public function delete( $id)
+    {
+        if($id){
+            // delete
+            $deleteID = Organisation::find($id);
+            if($deleteID){
+                $deleteID->delete();
+            } 
+        }
+         
+        return Redirect::to('/organisation');
+        
+    }
+
+
+
 }
