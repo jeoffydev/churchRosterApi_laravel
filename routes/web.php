@@ -31,14 +31,19 @@ Route::post('owner', [AuthOwnerController::class, 'ownerLogin'])->name('login');
 Route::group(['middleware' => ['auth']], function() {
     //Dashboard
     Route::get('dashboard', [AuthOwnerDashboardController::class, 'index'])->name('auth.dashboard'); 
+    
     //Organisation
     Route::get('organisation', [AuthOwnerOrganisationController::class, 'index'])->name('auth.organisation'); 
     Route::post('create', [AuthOwnerOrganisationController::class, 'doCreateOrg'])->name('create.org');
     Route::get('organisation/{id}', [AuthOwnerOrganisationController::class, 'edit'])->name('auth.organisation-edit'); 
     Route::get('organisation/delete/{id}', [AuthOwnerOrganisationController::class, 'delete'])->name('auth.organisation'); 
     Route::post('update', [AuthOwnerOrganisationController::class, 'doUpdateOrg'])->name('update.org');
+     
     //Contractors
     Route::get('contractors', [AuthOwnerContractorController::class, 'index'])->name('auth.contractor'); 
+    Route::post('create-user', [AuthOwnerContractorController::class, 'doCreateUser'])->name('create.user');
     //Logout
     Route::get('logout', [AuthOwnerDashboardController::class, 'logout'])->name('auth.owner');
 });
+
+
