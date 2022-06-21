@@ -14,6 +14,7 @@ class CheckUserAccess
     private static  $_Admin = 'Admin';
     private static  $_Contractor = 'Contractor';
     private static  $_Member = 'Member';
+    public static   $Owner_email = 'jeoffy_hipolito@yahoo.com';
 
     public function isAdmin(){
         $authUser  = Auth::user(); 

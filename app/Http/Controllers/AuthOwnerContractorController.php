@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Organisation;
+use App\Http\CheckUserAccess;
 
 class AuthOwnerContractorController extends Controller
 {
@@ -12,7 +13,8 @@ class AuthOwnerContractorController extends Controller
 
         //Remove jeoffy_hipolito@yahoo.com in the list
         //Get the user type as contractor only list
-        $usersList = User::all();
+        $owner_email = CheckUserAccess::$Owner_email;
+        $usersList = User::where('email', '!=', $owner_email)->get();
         $orgList = Organisation::all();
         $data = [
             'usersList'=>$usersList,
