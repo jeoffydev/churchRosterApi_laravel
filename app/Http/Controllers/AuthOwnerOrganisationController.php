@@ -28,8 +28,13 @@ class AuthOwnerOrganisationController extends Controller
             'org_name' => 'required',
             'active' => 'required',
         ]); 
-
-        $createOrg = Organisation::create($request->all());
+        //instead of $request->all()
+        $createOrg = Organisation::create([
+            'org_name' => $request->org_name,
+            'active' => $request->active,
+            'description'=>$request->description,
+            'location'=>$request->location
+        ]);
         return back()->with('success', 'New Organisation has been created.');
       
        
@@ -40,7 +45,6 @@ class AuthOwnerOrganisationController extends Controller
        if($id){
             $organisation = Organisation::where('id', $id)->exists();
             if($organisation){
-                $organisation = Organisation::find($id);
                 $organisation = Organisation::find($id);
                 $data = [
                     'organisation'=>$organisation
@@ -61,6 +65,7 @@ class AuthOwnerOrganisationController extends Controller
             'id'=> 'required',
             'org_name' => 'required',
             'active' => 'required',
+            
         ]); 
 
         $org = Organisation::find($request->get('id'));

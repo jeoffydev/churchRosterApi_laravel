@@ -62,9 +62,9 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">{{ __('Name') }}</th>
-                                            <th scope="col">{{ __('Active') }}</th>
                                             <th scope="col">{{ __('Location') }}</th>
                                             <th scope="col">{{ __('Description') }}</th>
+                                            <th scope="col">{{ __('Active') }}</th>
                                             <th scope="col">{{ __('Edit') }}</th>
                                             <th scope="col">{{ __('Delete') }}</th>
                                         </tr>

@@ -1,5 +1,6 @@
 @extends('layout.master')
 @extends('layout.navigation')
+@inject('getOrg', 'App\Http\CheckOrganisation')
 
 @section('content')
     <div class="row">
@@ -16,7 +17,13 @@
                 <div class="alert alert-success text-center">
                     {{Session::get('success')}}
                 </div>
-            @endif    
+            @endif  
+            
+            @if(Session::has('failed'))
+                <div class="alert alert-danger text-center">
+                    {{Session::get('failed')}}
+                </div>
+            @endif  
            
             <form method="POST" action="{{ route('create.user') }}">
                 @csrf
@@ -79,6 +86,7 @@
                                         <tr>
                                             <th scope="col">{{ __('Name') }}</th>
                                             <th scope="col">{{ __('Email') }}</th>
+                                            <th scope="col">{{ __('Organisation') }}</th>
                                             <th scope="col">{{ __('Edit') }}</th>
                                             <th scope="col">{{ __('Delete') }}</th>
                                         </tr>
@@ -88,6 +96,7 @@
                                             <tr>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td>{{ $user['userOrganisation'][0]->org_id }} | {{ $getOrg::getOrganisationName($user['userOrganisation'][0]->org_id ) }}</td>
                                                 <td><a class="btn btn-info" href="{{ URL::to('user/' . $user->id) }}">{{ __('Edit') }}</a> </td>
                                                 <td><a class="btn btn-danger" href="{{ URL::to('user/delete/' . $user->id) }}" onclick="return confirm('Are you sure you want to delete this organisation?');">{{ __('Delete') }}</a> </td>
                                             </tr>  

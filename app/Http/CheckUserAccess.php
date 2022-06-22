@@ -36,4 +36,15 @@ class CheckUserAccess
         $userType = UserAccess::find($authUser->id)->userType;
         return $userType[0]->type_name == static::$_Member ? true : false;
     }
+
+    //Member access level
+    public function saveContractorAccess(){ 
+        $userType =  UserType::where('type_name', static::$_Contractor)->get();
+        return $userType[0]->id;
+    }
+
+    public function saveMemberAccess(){ 
+        $userType =  UserType::where('type_name', static::$_Member)->get();
+        return $userType[0]->id;
+    }
 }
