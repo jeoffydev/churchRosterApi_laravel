@@ -17,7 +17,7 @@ class CheckOrganisation
     public function getOrganisationName($id){
      
         $orgName = Organisation::find($id);
-        $active = "";
+        $active = static::$_InActive;
         if($orgName->active){
             $active = $orgName->active == 1 ? static::$_Active : static::$_InActive;
         }
