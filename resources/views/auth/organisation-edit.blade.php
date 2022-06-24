@@ -14,9 +14,15 @@
         </div>
         <div class="col-md-6 alert alert-secondary">
 
-            @if($data['organisation'])
-                {{ $data['organisation']->org_name }}
+            @if(Session::has('success'))
+                <div class="alert alert-success text-center">
+                    {{Session::get('success')}}
+                </div>
+            @endif    
 
+            @if($data['organisation'])
+                
+                <h3>{{ __('Edit') }} {{ $data['organisation']->org_name }} </h3> 
                 <form method="POST" action="{{ route('update.org') }}">
                     @csrf
                     <input type="hidden" value="{{ $data['organisation']->id }}" name="id" class="form-control" id="exampleFormControlInput1" >

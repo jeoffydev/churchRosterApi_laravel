@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Organisation;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\GeneralStringOption;
 
 class AuthOwnerOrganisationController extends Controller
 {
@@ -35,7 +36,7 @@ class AuthOwnerOrganisationController extends Controller
             'description'=>$request->description,
             'location'=>$request->location
         ]);
-        return back()->with('success', 'New Organisation has been created.');
+        return back()->with('success', GeneralStringOption::getSuccessMessage("Organisation"));
       
        
     }
@@ -75,7 +76,7 @@ class AuthOwnerOrganisationController extends Controller
         $org->location = $request->get('location');
         $org->description = $request->get('description');
         $org->save();
-        return back()->with('success', 'Organisation has been updated.');
+        return back()->with('success', GeneralStringOption::getUpdateMessage("Organisation"));
     
     }
 

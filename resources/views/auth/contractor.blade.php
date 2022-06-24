@@ -97,8 +97,8 @@
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user['userOrganisation'][0]->org_id }} | {{ $getOrg::getOrganisationName($user['userOrganisation'][0]->org_id ) }}</td>
-                                                <td><a class="btn btn-info" href="{{ URL::to('user/' . $user->id) }}">{{ __('Edit') }}</a> </td>
-                                                <td><a class="btn btn-danger" href="{{ URL::to('user/delete/' . $user->id) }}" onclick="return confirm('Are you sure you want to delete this organisation?');">{{ __('Delete') }}</a> </td>
+                                                <td><a class="btn btn-info" href="{{ URL::to('contractors/' . $user->id) }}">{{ __('Edit') }}</a> </td>
+                                                <td><a class="btn btn-danger" href="{{ URL::to('contractors/delete/' . $user->id) }}" onclick="return confirm('Are you sure you want to delete this organisation?');">{{ __('Delete') }}</a> </td>
                                             </tr>  
                                         @endforeach
                                     </tbody>
