@@ -23,5 +23,9 @@ class GeneralStringOption
     public function getEmailExistMessage($prop){
         return "".$prop." already exist!";
     }
+
+    public function getDeleteMessage($prop){ 
+        return "".$prop." has been deleted.";
+    }
    
 }

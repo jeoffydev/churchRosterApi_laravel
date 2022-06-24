@@ -11,20 +11,8 @@
         </div>
     </div> 
     <div class="row mt-2">
-        <div class="col-md-3">
-
-            @if(Session::has('success'))
-                <div class="alert alert-success text-center">
-                    {{Session::get('success')}}
-                </div>
-            @endif  
+        <div class="col-md-3"> 
             
-            @if(Session::has('failed'))
-                <div class="alert alert-danger text-center">
-                    {{Session::get('failed')}}
-                </div>
-            @endif  
-           
             <form method="POST" action="{{ route('create.user') }}">
                 @csrf
                 <div class="form-group mb-1">
@@ -98,7 +86,7 @@
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user['userOrganisation'][0]->org_id }} | {{ $getOrg::getOrganisationName($user['userOrganisation'][0]->org_id ) }}</td>
                                                 <td><a class="btn btn-info" href="{{ URL::to('contractors/' . $user->id) }}">{{ __('Edit') }}</a> </td>
-                                                <td><a class="btn btn-danger" href="{{ URL::to('contractors/delete/' . $user->id) }}" onclick="return confirm('Are you sure you want to delete this organisation?');">{{ __('Delete') }}</a> </td>
+                                                <td><a class="btn btn-danger" href="{{ URL::to('contractors/delete/' . $user->id) }}" onclick="return confirm('Are you sure you want to delete this user?');">{{ __('Delete') }}</a> </td>
                                             </tr>  
                                         @endforeach
                                     </tbody>

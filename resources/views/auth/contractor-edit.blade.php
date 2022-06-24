@@ -12,13 +12,7 @@
         <div class="col-md-3">
            &nbsp;
         </div>
-        <div class="col-md-6 alert alert-secondary">
-
-            @if(Session::has('success'))
-                <div class="alert alert-success text-center">
-                    {{Session::get('success')}}
-                </div>
-            @endif    
+        <div class="col-md-6 alert alert-secondary"> 
 
             @if($data['userEdit'])
                 <h3>{{ __('Edit') }} {{ $data['userEdit']->name }} </h3> 

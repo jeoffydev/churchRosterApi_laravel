@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('create-user', [AuthOwnerContractorController::class, 'doCreateUser'])->name('create.user');
     Route::get('contractors/{id}', [AuthOwnerContractorController::class, 'edit'])->name('auth.contractor-edit'); 
     Route::post('update-org', [AuthOwnerContractorController::class, 'doUpdateUser'])->name('update.user');
+    Route::get('contractors/delete/{id}', [AuthOwnerContractorController::class, 'delete'])->name('auth.contractor'); 
+
     //Logout
     Route::get('logout', [AuthOwnerDashboardController::class, 'logout'])->name('auth.owner');
 });

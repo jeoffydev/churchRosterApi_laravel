@@ -100,4 +100,21 @@ class AuthOwnerContractorController extends Controller
         return back()->with('success',  GeneralStringOption::getUpdateMessage("User")); 
     }
 
+    public function delete( $id)
+    {
+         
+        $deleteIDExist = User::where('id', $id)->exists();
+        if($deleteIDExist){ 
+            //  delete user with relationship for UserAccess and UserOrganisation in User model
+            $deleteID = User::find($id);
+            if($deleteID){ 
+                 $deleteID->userAccess()->delete();
+                 $deleteID->userOrganisation()->delete();
+                 $deleteID->delete(); 
+            } 
+            return back()->with('success',  GeneralStringOption::getDeleteMessage("User")); 
+        }
+        return back()->with('failed', GeneralStringOption::getExistMessage("User ID"));  
+    }
+
 }

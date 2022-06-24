@@ -88,10 +88,8 @@ class AuthOwnerOrganisationController extends Controller
             if($deleteID){
                 $deleteID->delete();
             } 
-        }
-         
-        return Redirect::to('/organisation');
-        
+        } 
+        return back()->with('success',  GeneralStringOption::getDeleteMessage("Organisation")); 
     }
 
 

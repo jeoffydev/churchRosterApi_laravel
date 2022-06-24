@@ -10,12 +10,7 @@
     </div> 
     <div class="row mt-2">
         <div class="col-md-3">
-
-            @if(Session::has('success'))
-                <div class="alert alert-success text-center">
-                    {{Session::get('success')}}
-                </div>
-            @endif    
+ 
            
             <form method="POST" action="{{ route('create.org') }}">
                 @csrf

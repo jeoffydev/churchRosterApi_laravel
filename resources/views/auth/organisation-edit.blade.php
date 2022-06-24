@@ -13,12 +13,7 @@
            &nbsp;
         </div>
         <div class="col-md-6 alert alert-secondary">
-
-            @if(Session::has('success'))
-                <div class="alert alert-success text-center">
-                    {{Session::get('success')}}
-                </div>
-            @endif    
+ 
 
             @if($data['organisation'])
                 
