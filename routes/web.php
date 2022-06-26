@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+//Test Swagger Project COntroller
+Route::resource('projects', 'ProjectsController');
+
 Route::get('/', function () {
     return view('welcome');
 });

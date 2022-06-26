@@ -1,0 +1,19 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Churster API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/login": {
+            "get": {
+                "operationId": "c5f1f678b10ef83fcc48e4bf10d3fe1f",
+                "responses": {
+                    "200": {
+                        "description": "Contractors login API."
+                    }
+                }
+            }
+        }
+    }
+}
