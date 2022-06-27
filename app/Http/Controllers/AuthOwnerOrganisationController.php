@@ -9,8 +9,7 @@ use App\Http\GeneralStringOption;
 
 class AuthOwnerOrganisationController extends Controller
 {
-
-   
+ 
     
     public function index(){
         $organisationsList = Organisation::all();

@@ -23,7 +23,7 @@ class UserOrganisation extends Model
 
     public function organisation()
     {
-        return $this->hasMany(Organisation::class, 'id');
+        return $this->hasMany(Organisation::class, 'id', 'org_id');
     }
 
 }

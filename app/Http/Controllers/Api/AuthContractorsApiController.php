@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User; 
+use App\Models\UserOrganisation; 
 use Illuminate\Support\Facades\Hash; 
 
 
@@ -39,13 +40,17 @@ class AuthContractorsApiController extends Controller
             ], Response::HTTP_UNAUTHORIZED);
         }  
          //If success get the token 
-         $user = User::with('userOrganisation', 'userAccess')->find(Auth::id());
-         $token = $user->createToken('token')->plainTextToken; 
-         $cookie = cookie("jwt_churster", $token, 3600 * 24 * 365);
+         $user = User::with('userOrganisation', 'userAccess' )->find(Auth::id()); 
+         $userOrg =  UserOrganisation::with('organisation')->where('user_id', $user['userOrganisation'][0]->user_id)->get();
  
+        //use dd($user['userOrganisation']); to view 
+         $token = $user->createToken('token')->plainTextToken; 
+         $cookie = cookie("jwt_churster", $token, 3600 * 24 * 365); 
+        
          $userDetails = [
             'jwt'=> $token,
             'userDetails' => $user, 
+            'userOrganisation' => $userOrg
          ];
         return response()->json($userDetails)->withCookie($cookie);
         
@@ -60,6 +65,14 @@ class AuthContractorsApiController extends Controller
     {
         return "Users";
     }
+
+    public function logout(){
+        $cookie = \Cookie::forget('jwt');
+        return \response([
+            'success' => 'logout',
+        ])->withCookie($cookie);
+    }
+
 
     /**
      * Show the form for creating a new resource.
