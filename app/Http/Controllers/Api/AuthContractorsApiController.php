@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\User; 
 use App\Models\UserOrganisation; 
 use Illuminate\Support\Facades\Hash; 
-
+use App\Http\CheckUserAccess;
+use App\Http\CheckOrganisation;
 
 /**
  * @SWG\Get(
@@ -40,17 +41,16 @@ class AuthContractorsApiController extends Controller
             ], Response::HTTP_UNAUTHORIZED);
         }  
          //If success get the token 
-         $user = User::with('userOrganisation', 'userAccess' )->find(Auth::id()); 
-         $userOrg =  UserOrganisation::with('organisation')->where('user_id', $user['userOrganisation'][0]->user_id)->get();
- 
+         $user = CheckOrganisation::getUserOrganisationInfo(Auth::id());
+      
         //use dd($user['userOrganisation']); to view 
-         $token = $user->createToken('token')->plainTextToken; 
+         $token = $user['userDetails']->createToken('token')->plainTextToken; 
          $cookie = cookie("jwt_churster", $token, 3600 * 24 * 365); 
         
          $userDetails = [
             'jwt'=> $token,
-            'userDetails' => $user, 
-            'userOrganisation' => $userOrg
+            'userDetails' => $user['userDetails'], 
+            'userOrganisation' => $user['orgDetails'], 
          ];
         return response()->json($userDetails)->withCookie($cookie);
         
@@ -62,8 +62,9 @@ class AuthContractorsApiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return "Users";
+    {   
+        return  CheckOrganisation::getUserOrganisationInfo(Auth::id()); 
+       
     }
 
     public function logout(){

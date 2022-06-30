@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserAccess;
 use App\Models\Organisation;
+use App\Models\UserOrganisation; 
 
 class CheckOrganisation
 {
@@ -26,6 +27,13 @@ class CheckOrganisation
         } 
        
         return "No organisation";
+    }
+
+
+    public function getUserOrganisationInfo($userID){ 
+        $user = User::with('userOrganisation', 'userAccess')->find($userID);
+        $org =  UserOrganisation::with('organisation')->where('user_id', $user['userOrganisation'][0]->user_id)->get();
+        return ['userDetails'=>$user, 'orgDetails'=>$org];
     }
 
    
