@@ -63,10 +63,10 @@ class AuthContractorsApiController extends Controller
      */
     public function index()
     {   
-        //get users only with the same organisation as the contractor's logged in
-        $getOrg = CheckOrganisation::getUserOrganisationInfo(Auth::id());
-        $usersOrg = User::with('userOrganisation', 'userAccess')->whereHas('userOrganisation', function($u){
-            $u->where('org_id', 1);
+        //get users only with the same organisation as the contractor's logged in 
+        $usersOrg  = User::with('userOrganisation', 'userAccess')->whereHas('userOrganisation', function($u){
+            $getOrg = CheckOrganisation::getUserOrganisationInfo(Auth::id());
+            $u->where('org_id', $getOrg['userDetails']->userOrganisation[0]->org_id);
          })->get();
         return  $usersOrg; 
        
