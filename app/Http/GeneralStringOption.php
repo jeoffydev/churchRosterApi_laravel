@@ -27,5 +27,9 @@ class GeneralStringOption
     public function getDeleteMessage($prop){ 
         return "".$prop." has been deleted.";
     }
+
+    public function getLoginUnauthorizedMessage(){ 
+        return "That email and password combination is incorrect.";
+    }
    
 }

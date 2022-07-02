@@ -14,6 +14,7 @@ use App\Models\UserOrganisation;
 use Illuminate\Support\Facades\Hash; 
 use App\Http\CheckUserAccess;
 use App\Http\CheckOrganisation;
+use App\Http\GeneralStringOption;
 
 /**
  * @SWG\Get(
@@ -34,11 +35,9 @@ class AuthContractorsApiController extends Controller
  
         if(!Auth::attempt($request->only('email', 'password'))){
             $wrongCreds = [
-                'error'=> 'Wrong Credentials'
-            ];  
-            return \response([
-                $wrongCreds
-            ], Response::HTTP_UNAUTHORIZED);
+                'error'=> GeneralStringOption::getLoginUnauthorizedMessage()
+            ];   
+            return response()->json([$wrongCreds], Response::HTTP_UNAUTHORIZED);
         }  
          //If success get the token 
          $user = CheckOrganisation::getUserOrganisationInfo(Auth::id());
