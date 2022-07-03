@@ -71,6 +71,17 @@ class AuthContractorsApiController extends Controller
        
     }
 
+
+    public function userDetails($id){ 
+         $user = CheckOrganisation::getUserOrganisationInfo($id);  
+        
+         $userDetails = [ 
+            'userDetails' => $user['userDetails'], 
+            'userOrganisation' => $user['orgDetails'], 
+         ];
+        return response()->json($userDetails);
+    }
+
     public function logout(){
         $cookie = \Cookie::forget('jwt');
         return \response([

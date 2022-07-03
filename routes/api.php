@@ -26,6 +26,7 @@ Route::post("contractors/login", [AuthContractorsApiController::class, 'login'])
 //Protected route using Sanctum
 //Get the User/org Details after logins 
 Route::middleware(['auth:sanctum'])->group(function () { 
-    Route::get('contractors/users', [AuthContractorsApiController::class, 'index']);   
+    Route::get('contractors/users', [AuthContractorsApiController::class, 'index']); 
+    Route::get('contractors/user/{id}', [AuthContractorsApiController::class, 'userDetails']);   
     Route::get('contractors/logout', [AuthContractorsApiController::class, 'logout']);
 });
