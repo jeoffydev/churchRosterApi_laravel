@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\UserAccess;
 use App\Models\UserOrganisation;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\UserService;
 
 class User extends Authenticatable
 {
@@ -49,6 +50,10 @@ class User extends Authenticatable
     public function userOrganisation()
     {
         return $this->hasMany(UserOrganisation::class);
+    }
+
+    public function userServices(){
+        return $this->hasMany(UserService::class);
     }
 
     
