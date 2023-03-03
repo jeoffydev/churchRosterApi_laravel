@@ -28,5 +28,6 @@ Route::post("contractors/login", [AuthContractorsApiController::class, 'login'])
 Route::middleware(['auth:sanctum'])->group(function () { 
     Route::get('contractors/users', [AuthContractorsApiController::class, 'index']); 
     Route::get('contractors/user/{id}', [AuthContractorsApiController::class, 'userDetails']);   
+    Route::post('contractors/user/create', [AuthContractorsApiController::class, 'create']); 
     Route::get('contractors/logout', [AuthContractorsApiController::class, 'logout']);
 });

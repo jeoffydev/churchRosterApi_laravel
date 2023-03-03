@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\CheckUserAccess;
 use App\Http\CheckOrganisation;
 use App\Http\GeneralStringOption;
+use App\Models\UserAccess;
 
 /**
  * @SWG\Get(
@@ -82,22 +83,44 @@ class AuthContractorsApiController extends Controller
         return response()->json($userDetails);
     }
 
-    public function logout(){
-        $cookie = \Cookie::forget('jwt');
-        return \response([
-            'success' => 'logout',
-        ])->withCookie($cookie);
-    }
-
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        if (User::where('email', '=', $request->email)->exists()) {
+            $wrongCreds = [
+                'error'=> GeneralStringOption::getEmailExistMessage($request->email)
+            ];   
+            return response()->json([$wrongCreds], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $createUser = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        if($createUser){
+            UserOrganisation::create([
+                'user_id'=>$createUser->id,
+                'org_id'=> $request->organisation_id
+            ]);
+            UserAccess::create([
+                    'user_id'=> $createUser->id,
+                    'access_level'=> CheckUserAccess::saveContractorAccess()
+            ]);
+        }
+
+        $userCreated = [
+            'success'=> GeneralStringOption::getSuccessCreated($request->email)
+        ];  
+
+        return response()->json($userCreated);
     }
 
     /**
@@ -154,5 +177,12 @@ class AuthContractorsApiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function logout(){
+        $cookie = \Cookie::forget('jwt');
+        return \response([
+            'success' => 'logout',
+        ])->withCookie($cookie);
     }
 }

@@ -1,0 +1,51 @@
+Database name: churs_roster_db
+ 
+Tables:
+
+---- users -----
+id INT (20) 
+name varchar(255)
+email varchar(255)
+email_verified_at varchar(255)
+password varchar(255)
+remember_token varchar(255)
+created_at varchar(255)
+updated_at varchar(255)
+
+---- organisations -----------
+id  INT (20)
+active INT (10)
+org_name varchar(255)
+created_at varchar(255)
+updated_at varchar(255)
+description varchar(255)
+location varchar(255)
+
+---- user_organisations -----------
+id  INT (20)
+user_id INT (10)
+org_id INT(10)
+created_at varchar(255)
+updated_at varchar(255)
+
+----- departments ------
+id  INT (20)
+name
+description
+created_at
+updated_at
+
+----- services -----------
+id  INT (20)
+name
+description
+created_at
+updated_at
+
+------ user_services ---------
+
+id  INT (20)
+user_id
+service_id
+created_at
+updated_at

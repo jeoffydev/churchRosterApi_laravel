@@ -12,6 +12,10 @@ class GeneralStringOption
         return "New ".$prop." has been created.";
     }
 
+    public function getSuccessCreated($prop){ 
+        return "".$prop." has been created.";
+    }
+
     public function getExistMessage($prop){ 
         return "No ".$prop." exist!.";
     }
