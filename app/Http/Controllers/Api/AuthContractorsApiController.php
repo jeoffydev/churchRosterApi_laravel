@@ -153,7 +153,25 @@ class AuthContractorsApiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $wrongCreds = [
+            'error'=> GeneralStringOption::idNotExist()
+        ];  
+        $error = response()->json([$wrongCreds], Response::HTTP_UNAUTHORIZED);
+        if($id){
+            $user = User::where('id', $id)->exists();
+            if($user){
+                $userID = User::with('userOrganisation')->find($id); 
+                $orgList = Organisation::all();
+                $data = [
+                    'userEdit'=>$userID,
+                    'orgList'=>$orgList
+                ];
+                response()->json($data);
+            } else {
+                return $error;
+            } 
+        }  
+        return $error;
     }
 
     /**

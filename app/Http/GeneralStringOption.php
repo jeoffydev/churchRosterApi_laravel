@@ -35,5 +35,9 @@ class GeneralStringOption
     public function getLoginUnauthorizedMessage(){ 
         return "That email and password combination is incorrect.";
     }
+
+    public function idNotExist(){ 
+        return "ID not exist";
+    }
    
 }
