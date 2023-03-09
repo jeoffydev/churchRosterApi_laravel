@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthContractorsApiController;
-
+use App\Http\Controllers\Api\AuthOrganisationApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,5 +30,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('contractors/user/{id}', [AuthContractorsApiController::class, 'userDetails']);   
     Route::post('contractors/user/create', [AuthContractorsApiController::class, 'create']); 
     Route::get('contractors/user-edit/{id}', [AuthContractorsApiController::class, 'edit']); 
+
+    //Organisation
+    Route::get('organisations/all', [AuthOrganisationApiController::class, 'index']);
     Route::get('contractors/logout', [AuthContractorsApiController::class, 'logout']);
 });

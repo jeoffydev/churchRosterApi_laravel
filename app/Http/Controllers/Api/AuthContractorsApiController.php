@@ -112,7 +112,7 @@ class AuthContractorsApiController extends Controller
             ]);
             UserAccess::create([
                     'user_id'=> $createUser->id,
-                    'access_level'=> CheckUserAccess::saveContractorAccess()
+                    'access_level'=> $request->access === 1 ? CheckUserAccess::saveContractorAccess() : CheckUserAccess::saveMemberAccess()
             ]);
         }
 
