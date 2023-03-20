@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Organisation;
-
+use App\Models\OrganisationEvent;
 class Event extends Model
 {
     use HasFactory;
@@ -16,8 +16,8 @@ class Event extends Model
         'active', 'title', 'date', 'description'
     ];
 
-    public function organisation()
+    public function organisationEvent()
     {
-        return $this->hasOne(Organisation::class);
+        return $this->hasMany(OrganisationEvent::class);
     }
 }

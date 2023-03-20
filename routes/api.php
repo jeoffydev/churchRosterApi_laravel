@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthContractorsApiController;
 use App\Http\Controllers\Api\AuthOrganisationApiController;
+use App\Http\Controllers\Api\AuthEventApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,5 +34,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     //Organisation
     Route::get('organisations/all', [AuthOrganisationApiController::class, 'index']);
+    //Event
+    Route::get('events/all', [AuthEventApiController::class, 'index']);
+    Route::get('events/{id}', [AuthEventApiController::class, 'show']); 
+    //Logout
     Route::get('contractors/logout', [AuthContractorsApiController::class, 'logout']);
 });
