@@ -28,6 +28,7 @@ Route::post("contractors/login", [AuthContractorsApiController::class, 'login'])
 //Get the User/org Details after logins 
 Route::middleware(['auth:sanctum'])->group(function () { 
     Route::get('contractors/users', [AuthContractorsApiController::class, 'index']); 
+    Route::get('contractors/users/all', [AuthContractorsApiController::class, 'adminAllContractors']); 
     Route::get('contractors/user/{id}', [AuthContractorsApiController::class, 'userDetails']);   
     Route::post('contractors/user/create', [AuthContractorsApiController::class, 'create']); 
     Route::get('contractors/user-edit/{id}', [AuthContractorsApiController::class, 'edit']); 

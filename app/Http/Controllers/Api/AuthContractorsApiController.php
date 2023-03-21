@@ -72,6 +72,14 @@ class AuthContractorsApiController extends Controller
        
     }
 
+    public function adminAllContractors()
+    {    
+        $usersOrg  = User::with('userOrganisation', 'userAccess')->whereHas('userAccess', function($u){ 
+            $u->where('access_level', 3);
+         })->get();
+        return  $usersOrg; 
+    }
+
 
     public function userDetails($id){ 
          $user = CheckOrganisation::getUserOrganisationInfo($id);  

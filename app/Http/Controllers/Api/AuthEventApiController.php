@@ -26,7 +26,7 @@ class AuthEventApiController extends Controller
         $wrongCreds = [
             'error'=> GeneralStringOption::idNotExist()
         ];  
-        $error = response()->json([$wrongCreds], Response::HTTP_UNAUTHORIZED);
+        $error = response()->json($wrongCreds);
  
 
         if($id){
