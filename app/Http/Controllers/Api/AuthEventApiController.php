@@ -34,7 +34,9 @@ class AuthEventApiController extends Controller
             if($orgEvent ){ 
                  $organisationEvent = Event::with('organisationEvent')->whereHas('organisationEvent', function($u) use ($id){
                     $u->where('org_id', $id);
-                 })->get();  
+                 })
+                 ->orderBy('id', 'desc')
+                 ->get();  
                 $data = [
                     'organisationEvent'=> $organisationEvent 
                 ];
