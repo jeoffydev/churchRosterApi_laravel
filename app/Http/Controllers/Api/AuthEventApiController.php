@@ -48,4 +48,29 @@ class AuthEventApiController extends Controller
             return $error;
        }
     }
+
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        $createEvent = Event::create([
+            'active' => $request->active, 
+            'title'  => $request->title, 
+            'date'  => $request->date, 
+            'description' => $request->description, 
+        ]);
+        if($createEvent){
+            OrganisationEvent::create([
+                'event_id'=>$createEvent->id,
+                'org_id'=> $request->organisation_id
+            ]); 
+        }
+        $eventCreated = [
+            'success'=> GeneralStringOption::getSuccessCreated('Event')
+        ];  
+        return response()->json($eventCreated);
+    }
 }

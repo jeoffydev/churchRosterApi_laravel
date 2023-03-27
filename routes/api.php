@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //Event
     Route::get('events/all', [AuthEventApiController::class, 'index']);
     Route::get('events/{id}', [AuthEventApiController::class, 'show']); 
+    Route::post('events/create', [AuthEventApiController::class, 'create']); 
     //Logout
     Route::get('contractors/logout', [AuthContractorsApiController::class, 'logout']);
 });
