@@ -35,6 +35,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     //Organisation
     Route::get('organisations/all', [AuthOrganisationApiController::class, 'index']);
+    Route::post('organisations/create', [AuthOrganisationApiController::class, 'store']); 
     //Event
     Route::get('events/all', [AuthEventApiController::class, 'index']);
     Route::get('events/{id}', [AuthEventApiController::class, 'show']); 

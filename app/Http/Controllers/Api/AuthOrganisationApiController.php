@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Organisation;
- 
+use App\Http\GeneralStringOption;
+
 class AuthOrganisationApiController extends Controller
 {
     /**
@@ -30,7 +31,19 @@ class AuthOrganisationApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $createOrg = Organisation::create([
+            'active' => $request->active, 
+            'org_name'  => $request->org_name, 
+            'location'  => $request->location, 
+            'description' => $request->description, 
+        ]);
+
+        if ($createOrg) {
+            $OrgCreated = [
+                'success'=> GeneralStringOption::getSuccessCreated('Organisation')
+            ];  
+            return response()->json($OrgCreated);
+        }  
     }
 
     /**
